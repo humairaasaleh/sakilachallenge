@@ -1,0 +1,74 @@
+#1
+SELECT first_name, last_name FROM actor;
+
+#2
+SELECT last_name FROM actor WHERE first_name='John' ;
+
+#3
+SELECT first_name, last_name FROM actor WHERE last_name='Neeson';
+
+#4
+SELECT actor_id, first_name, last_name FROM actor WHERE (actor_id % 10)=0;
+
+#5
+SELECT description FROM film WHERE film_id=100;
+
+#6
+SELECT title, rating FROM film WHERE rating= 'R' ;
+
+#7
+SELECT title, rating FROM film WHERE rating!= 'R' ;
+
+#8
+SELECT title, length FROM film ORDER BY length ASC LIMIT 10;
+
+#9
+SELECT title, length FROM film WHERE length=( SELECT MAX(length) FROM film);
+
+#10
+SELECT title FROM film WHERE special_features LIKE '%Deleted Scenes%';
+
+#11
+SELECT last_name, COUNT(*) c FROM actor GROUP BY last_name HAVING c<2 ORDER BY last_name DESC;
+
+#12
+SELECT last_name, COUNT(*) c FROM actor GROUP BY last_name HAVING c>1 ORDER BY c DESC;
+
+#13
+SELECT a.first_name, a.last_name, COUNT(*) AS magnitude FROM actor a JOIN film_actor fa ON fa.actor_id=a.actor_id GROUP BY a.actor_id ORDER BY magnitude DESC LIMIT 1;
+
+#14
+
+
+#15
+SELECT AVG(length) FROM film;
+
+#16
+SELECT fc.category_id, AVG(f.length) FROM film_category fc JOIN film f ON f.film_id=fc.film_id GROUP BY fc.category_id ;
+
+#17
+SELECT title FROM film_text WHERE description LIKE '%Robot%';
+
+#18
+SELECT COUNT(*) FROM film WHERE release_year=2010;
+
+#19
+SELECT f.title FROM film f JOIN film_category fc ON f.film_id=fc.film_id WHERE category_id=11;
+
+#20
+SELECT first_name, last_name FROM staff WHERE staff_id=2;
+
+#21
+SELECT f.title FROM film f JOIN film_actor fa ON fa.film_id=f.film_id WHERE fa.actor_id=16;
+
+#22
+SELECT COUNT(country) FROM country;
+
+#23
+SELECT name FROM language ORDER BY name DESC;
+
+#24
+SELECT first_name, last_name FROM actor WHERE last_name LIKE '%\SON' ORDER BY first_name ASC;
+
+#25
+SELECT c.name FROM category c JOIN film_category fc ON c.category_id=fc.category_id ORDER BY c.name DESC LIMIT 1;
